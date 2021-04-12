@@ -3,6 +3,7 @@ Parses through a directory to read Chia plotter log files and pull out all the j
 
 ### Prerequisites
 `gcc` with support for C++17
+
 `make`
 
 ### Instructions (Linux)
