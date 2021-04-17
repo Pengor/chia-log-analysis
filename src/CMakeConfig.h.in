@@ -1,0 +1,7 @@
+#ifndef C_MAKE_CONFIG_H
+#define C_MAKE_CONFIG_H
+
+#define CLA_MAJ_VER @chia-log-analysis_VERSION_MAJOR@
+#define CLA_MIN_VER @chia-log-analysis_VERSION_MINOR@
+
+#endif /* C_MAKE_CONFIG_H */
