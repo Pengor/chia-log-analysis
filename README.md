@@ -18,6 +18,8 @@ Parses through Chia plotter log files and plops all the juicy details into a CSV
 
 `cmake -S src -B build`
 
+`cmake --build build`
+
 ### Run
 Guided prompts:
 
