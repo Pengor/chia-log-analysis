@@ -31,5 +31,20 @@ or command-line arguments:
 
 where `<logfile directory>` is the path to your chia plotter logs and `<output filename>` is the path to the .csv file you want to save (file extension should be specified by the user).
 
+### What info does it parse?
+For each file it parses as much as it can find of the following (I imagine I'm not the only one who's had a plot interrupted):
+* Plot size 
+* Buffer size 
+* Buckets 
+* Threads 
+* Stripe size 
+* Start date 
+* Phase 1 duration 
+* Phase 2 duration 
+* Phase 3 duration 
+* Phase 4 duration 
+* Total time 
+* Plot filename
+
 ### Why does this exist?
 I started doing some chia plotting and wanted to compare the performance of different settings used during plotting. I imagine there are other tools out there that do the same thing as this one, but it gave me an excuse to do some more C++ learning outside my typical ecosystem. If you find any bugs or want to see a feature added please feel free to open a new _Issue_.
