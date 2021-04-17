@@ -1,5 +1,9 @@
 # Chia Log Analysis
-Parses through Chia plotter log files and plops all the juicy details in a CSV file!
+[![CMake](https://github.com/Pengor/chia-log-analysis/actions/workflows/cmake.yml/badge.svg)](https://github.com/Pengor/chia-log-analysis/actions/workflows/cmake.yml)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/Pengor/chia-log-analysis.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Pengor/chia-log-analysis/alerts/)
+[![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/Pengor/chia-log-analysis.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Pengor/chia-log-analysis/context:cpp)
+
+Parses through Chia plotter log files and plops all the juicy details into a CSV file!
 
 ### Prerequisites
 * CMake
