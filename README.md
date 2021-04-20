@@ -1,13 +1,16 @@
 # Chia Log Analysis
-[![CMake](https://github.com/Pengor/chia-log-analysis/actions/workflows/cmake.yml/badge.svg)](https://github.com/Pengor/chia-log-analysis/actions/workflows/cmake.yml)
+[![Build](https://github.com/Pengor/chia-log-analysis/actions/workflows/build.yml/badge.svg)](https://github.com/Pengor/chia-log-analysis/actions/workflows/build.yml)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/Pengor/chia-log-analysis.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Pengor/chia-log-analysis/alerts/)
 [![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/Pengor/chia-log-analysis.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Pengor/chia-log-analysis/context:cpp)
 
 Parses through Chia plotter log files and plops all the juicy details into a CSV file!
 
-### Prerequisites
+## Build
+See below for instructions if you prefer to build the application yourself. Otherwise feel free to simply download the binaries from the [latest release](https://github.com/Pengor/chia-log-analysis/releases/latest).
+
+### Build Prerequisites
 * CMake
-* C++ compiler (I used GCC)
+* C++ compiler
 
 ### Build Instructions
 `git clone https://github.com/Pengor/chia-log-analysis.git`
@@ -20,16 +23,20 @@ Parses through Chia plotter log files and plops all the juicy details into a CSV
 
 `cmake --build build`
 
-### Run
-Guided prompts:
+## Run
+Navigate to the location of the built or downloaded binary and run one of the following options.
 
-`./build/chia-log-analysis`
+#### Guided prompts:
 
-or command-line arguments:
+`./chia-log-analysis`
 
-`./build/chia-log-analysis -i <logfile directory> -o <output filename>`
+#### Command-line arguments:
+
+`./chia-log-analysis -i <logfile directory> -o <output filename>`
 
 where `<logfile directory>` is the path to your chia plotter logs and `<output filename>` is the path to the .csv file you want to save (file extension should be specified by the user).
+
+## About
 
 ### What info does it parse?
 For each file it parses as much as it can find of the following (I imagine I'm not the only one who's had a plot interrupted):
