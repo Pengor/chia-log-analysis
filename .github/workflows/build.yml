@@ -1,0 +1,38 @@
+name: Build
+
+on: [push]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    # The CMake configure and build commands are platform agnostic and should work equally
+    # well on Linux, Windows, or macOS
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Create Build Directory
+      # Some projects don't allow in-source building, so create a separate build directory
+      run: cmake -E make_directory ./build
+
+    - name: Configure CMake
+      # Tell CMake where our input (source) and output (build) locations are
+      run: cmake -S src -B build
+
+    - name: Build
+      # Execute the build.
+      run: cmake --build build
+      
+    - name: Upload binaries
+      # Make the built binaries available for download
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-artifacts-${{ matrix.os }}
+        path: build
