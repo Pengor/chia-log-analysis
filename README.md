@@ -10,7 +10,7 @@ See below for instructions if you prefer to build the application yourself. Othe
 
 ### Build Prerequisites
 * CMake
-* C++ compiler
+* C++ compiler (with support for C++17)
 
 ### Build Instructions
 `git clone https://github.com/Pengor/chia-log-analysis.git`
