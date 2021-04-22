@@ -104,11 +104,16 @@ int main(int argc, char* argv[]) {
                     }
                 }
                 // Add line end unless we didn't write any data for current in_file
-                if (any_of(begin(found_flags),end(found_flags),[](int i){return i;}))
+                if (any_of(begin(found_flags),end(found_flags),[](int i){return i;})) {
                     out_file << endl;
+                    cout << "Parsed: " << current.path() << endl;
+                } else {
+                    cout << "NOTE: No relevant data found in file: " << current.path() << endl;
+                }
+                in_file.close();
+            } else {
+                cout << "ERROR: Unable to open file: " << current.path() << endl;
             }
-            in_file.close();
-            cout << "Parsed: " << current.path() << endl;
         }
     }
     out_file.close();
