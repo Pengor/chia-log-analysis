@@ -20,9 +20,10 @@ namespace patterns {
     const regex PHASE_3     = regex("^Time for phase 3 = (\\d+\\.\\d+) seconds");
     const regex PHASE_4     = regex("^Time for phase 4 = (\\d+\\.\\d+) seconds");
     const regex TOTAL_TIME  = regex("^Total time = (\\d+\\.\\d+) seconds");
+    const regex COPY_TIME   = regex("^Copy time = (\\d+\\.\\d+) seconds");
     const regex FILENAME    = regex("^Renamed final file from \".+\" to (\".+\")");
 
-    const int NUM_SEARCHES = 11; // Number of patterns minus the ignore pattern
+    const int NUM_SEARCHES = 12; // Number of patterns minus the ignore pattern
 }
 
 #endif /* PATTERNS_H */
