@@ -54,7 +54,8 @@ For each file it parses as much as it can find of the following (I imagine I'm n
 * Phase 3 duration 
 * Phase 4 duration 
 * Total time 
+* Copy time
 * Plot filename
 
 ### Why does this exist?
-I started doing some chia plotting and wanted to compare the performance of different settings used during plotting. I imagine there are other tools out there that do the same thing as this one, but it gave me an excuse to do some more C++ learning outside my typical ecosystem. If you find any bugs or want to see a feature added please feel free to open a new _Issue_.
+I started doing some chia plotting and wanted to compare the performance of different settings used during plotting. I imagine there are other tools out there that do the same thing as this one, but it gave me an excuse to do some more C++ learning outside my typical ecosystem. If you find any bugs or want to see a feature added please feel free to open a new [_Issue_](https://github.com/Pengor/chia-log-analysis/issues/new/choose).
