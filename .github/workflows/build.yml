@@ -28,7 +28,7 @@ jobs:
 
     - name: Build
       # Execute the build.
-      run: cmake --build build
+      run: cmake --build build --config Release
       
     - name: Upload binaries
       # Make the built binaries available for download
