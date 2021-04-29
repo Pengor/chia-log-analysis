@@ -37,7 +37,7 @@ Navigate to the location of the built or downloaded binary and run one of the fo
 where `<logfile directory>` is the path to your chia plotter logs and `<output filename>` is the path to the .csv file you want to save (file extension should be specified by the user).
 
 ### Note for Windows
-If the application does run not you may need to install the [Microsoft Visual C++ Redistributable for Visual Studio 2019](https://visualstudio.microsoft.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2019).
+If the application does not run you may need to install the [Microsoft Visual C++ Redistributable for Visual Studio 2019](https://visualstudio.microsoft.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2019).
 
 ## About
 
