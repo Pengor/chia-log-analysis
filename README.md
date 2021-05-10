@@ -43,6 +43,8 @@ If the application does not run you may need to install the [Microsoft Visual C+
 
 ### What info does it parse?
 For each file it parses as much as it can find of the following (I imagine I'm not the only one who's had a plot interrupted):
+* Temp dir 1
+* Temp dir 2
 * Plot size 
 * Buffer size 
 * Buckets 
