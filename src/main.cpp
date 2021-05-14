@@ -35,6 +35,9 @@ int main(int argc, char* argv[]) {
     if (out_file.is_open()) {
         if (filesystem::file_size(out_filename) == 0) {
             out_file << 
+                "Filename," << 
+            	"Tmp Directory," << 
+		        "Plot ID," << 
                 "Plot size," << 
                 "Buffer size," << 
                 "Buckets," << 
@@ -42,10 +45,15 @@ int main(int argc, char* argv[]) {
                 "Stripe size," << 
                 "Start date," << 
                 "Phase 1 duration," << 
+                "Phase 1 CPU," <<
                 "Phase 2 duration," << 
+                "Phase 2 CPU," <<
                 "Phase 3 duration," << 
+                "Phase 3 CPU," <<
                 "Phase 4 duration," << 
+                "Phase 4 CPU,"
                 "Total time," << 
+                "Total CPU," <<                 
                 "Copy time," << 
                 "Plot filename," << 
                 endl;
@@ -56,9 +64,12 @@ int main(int argc, char* argv[]) {
             if (in_file.is_open()) {
                 smatch match;
                 bool found_flags[patterns::NUM_SEARCHES] = {false};
+                out_file << current.path() << ",";
                 while (getline(in_file, current_line)) {
 
                     size_t ff_i = 0; // found_flags iterator
+
+                     
 
                     // Perform regular expression searches for all the key info 
                     // we need, skipping searches that have already hit once to 
@@ -68,7 +79,13 @@ int main(int argc, char* argv[]) {
                         // "\tBucket" and we don't care about them so just skip
                         // these lines
                         continue;
-                    } else if (!found_flags[ff_i] && regex_search(current_line, match, patterns::PLOT_SIZE)) {
+                    } else if (!found_flags[ff_i] && regex_search(current_line, match, patterns::TMP_DIR)) {
+                        out_file << match.str(1) << ",";
+                        found_flags[ff_i] = true;
+                    } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::PLOT_ID)) {
+                        out_file << match.str(1) << ",";
+                        found_flags[ff_i] = true;
+                    } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::PLOT_SIZE)) {
                         out_file << match.str(1) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::BUFFER_SIZE)) {
@@ -84,19 +101,19 @@ int main(int argc, char* argv[]) {
                         out_file << match.str(1) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::PHASE_1)) {
-                        out_file << match.str(1) << ",";
+                        out_file << match.str(1) << "," << match.str(2) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::PHASE_2)) {
-                        out_file << match.str(1) << ",";
+                        out_file << match.str(1) << "," << match.str(2) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::PHASE_3)) {
-                        out_file << match.str(1) << ",";
+                        out_file << match.str(1) << "," << match.str(2) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::PHASE_4)) {
-                        out_file << match.str(1) << ",";
+                        out_file << match.str(1) << "," << match.str(2) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::TOTAL_TIME)) {
-                        out_file << match.str(1) << ",";
+                        out_file << match.str(1) << "," << match.str(2) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::COPY_TIME)) {
                         out_file << match.str(1) << ",";
