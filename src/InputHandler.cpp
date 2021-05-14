@@ -1,7 +1,3 @@
-// Handle the user input for the application
-// User can enter a few flags when calling the program from the CLI
-// Otherwise the handler prompts the user to enter necessary info
-
 #include <string>
 #include <vector>
 #include <iostream>

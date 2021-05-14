@@ -1,6 +1,6 @@
 // Chia Log Analysis by Drew M. Johnson
 // Authored 4/11/2021
-// Last updated 5/10/2021
+// Last updated 4/29/2021
 //
 // This program prompts the user for two file locations if not provided:
 //      1) The location to read Chia plotter logs from
@@ -35,8 +35,6 @@ int main(int argc, char* argv[]) {
     if (out_file.is_open()) {
         if (filesystem::file_size(out_filename) == 0) {
             out_file << 
-                "Temp dir 1," << 
-                "Temp dir 2," << 
                 "Plot size," << 
                 "Buffer size," << 
                 "Buckets," << 
@@ -70,10 +68,7 @@ int main(int argc, char* argv[]) {
                         // "\tBucket" and we don't care about them so just skip
                         // these lines
                         continue;
-                    } else if (!found_flags[ff_i] && regex_search(current_line, match, patterns::PLOT_DIRS)) {
-                        out_file << match.str(1) << "," << match.str(2) << ",";
-                        found_flags[ff_i] = true;
-                    } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::PLOT_SIZE)) {
+                    } else if (!found_flags[ff_i] && regex_search(current_line, match, patterns::PLOT_SIZE)) {
                         out_file << match.str(1) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::BUFFER_SIZE)) {
