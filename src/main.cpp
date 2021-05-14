@@ -1,6 +1,6 @@
 // Chia Log Analysis by Drew M. Johnson
 // Authored 4/11/2021
-// Last updated 4/29/2021
+// Last updated 5/13/2021
 //
 // This program prompts the user for two file locations if not provided:
 //      1) The location to read Chia plotter logs from
@@ -36,8 +36,8 @@ int main(int argc, char* argv[]) {
         if (filesystem::file_size(out_filename) == 0) {
             out_file << 
                 "Filename," << 
-            	"Tmp Directory," << 
-		        "Plot ID," << 
+                "Temp Dir 1," << 
+                "Plot ID," << 
                 "Plot size," << 
                 "Buffer size," << 
                 "Buckets," << 
@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
                 "Phase 4 duration," << 
                 "Phase 4 CPU,"
                 "Total time," << 
-                "Total CPU," <<                 
+                "Total CPU," << 
                 "Copy time," << 
                 "Plot filename," << 
                 endl;
@@ -68,8 +68,6 @@ int main(int argc, char* argv[]) {
                 while (getline(in_file, current_line)) {
 
                     size_t ff_i = 0; // found_flags iterator
-
-                     
 
                     // Perform regular expression searches for all the key info 
                     // we need, skipping searches that have already hit once to 
