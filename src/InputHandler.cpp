@@ -42,12 +42,12 @@ const char* WEBSITE_MESSAGE = "https://github.com/Pengor/chia-log-analysis";
 // in_dir will be set when this returns
 void InputHandler::promptForInDir(void) {
     cout << "Enter directory to read logs from:" << endl;
-    cin >> this->in_dir;
+    getline(cin, in_dir);
 
     while (!filesystem::is_directory(in_dir)) {
         cout << "DIRECTORY INVALID" << endl;
         cout << "Enter directory to read logs from:" << endl;
-        cin >> this->in_dir;
+        getline(cin, in_dir);
     }
 }
 
@@ -55,12 +55,12 @@ void InputHandler::promptForInDir(void) {
 // out_file will be set when this returns
 void InputHandler::promptForOutFile(void) {
     cout << "Enter filename to save output to:" << endl;
-    cin >> this->out_filename;
+    getline(cin, out_filename);
 
     while (!outFileValid()) {
         cout << "FILE INVALID" << endl;
         cout << "Enter filename to save output to:" << endl;
-        cin >> this->out_filename;
+        getline(cin, out_filename);
     }
 }
 
