@@ -45,17 +45,18 @@ If the application does not run you may need to install the [Microsoft Visual C+
 For each file it parses as much as it can find of the following (I imagine I'm not the only one who's had a plot interrupted):
 * Temp dir 1
 * Temp dir 2
-* Plot size 
-* Buffer size 
-* Buckets 
-* Threads 
-* Stripe size 
-* Start date 
-* Phase 1 duration 
-* Phase 2 duration 
-* Phase 3 duration 
-* Phase 4 duration 
-* Total time 
+* Plot size
+* Buffer size
+* Buckets
+* Threads
+* Stripe size
+* Start date
+* Phase 1 duration
+* Phase 2 duration
+* Phase 3 duration
+* Phase 4 duration
+* Total time (sec)
+* Total time
 * Copy time
 * Plot filename
 

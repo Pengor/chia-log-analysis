@@ -1,6 +1,6 @@
 // Chia Log Analysis by Drew M. Johnson
 // Authored 4/11/2021
-// Last updated 5/19/2021
+// Last updated 5/20/2021
 //
 // This program prompts the user for two file locations if not provided:
 //      1) The location to read Chia plotter logs from
@@ -48,6 +48,7 @@ int main(int argc, char* argv[]) {
                 "Phase 2 duration," << 
                 "Phase 3 duration," << 
                 "Phase 4 duration," << 
+                "Total time (sec)," << 
                 "Total time," << 
                 "Copy time," << 
                 "Plot filename," << 
@@ -102,7 +103,7 @@ int main(int argc, char* argv[]) {
                         out_file << match.str(1) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::TOTAL_TIME)) {
-                        out_file << match.str(1) << ",";
+                        out_file << match.str(1) << "," << TimeAndDate::FormatTime(match.str(1)) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::COPY_TIME)) {
                         out_file << match.str(1) << ",";

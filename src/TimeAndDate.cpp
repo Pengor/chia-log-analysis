@@ -1,7 +1,7 @@
 // Convert date and time strings to a friendlier format for .csv files
 
 #include "TimeAndDate.h"
-#include <ctime>
+#include <map>
 
 using namespace std;
 
@@ -19,6 +19,36 @@ const map<string,string> MONTHS = {
     {"Nov", "11"},
     {"Dec", "12"}
 };
+
+// Converts a time string to the format hh:mm:ss.mil
+string TimeAndDate::FormatTime(string secs_str) {
+    string rtn_str = "";
+
+    int seconds = stoi(secs_str);
+
+    // hours
+    int hours = seconds / 3600;
+    if (hours < 10)
+        rtn_str.append("0");
+    rtn_str.append(to_string(hours) + ":");
+
+    // minutes
+    int minutes = seconds / 60 % 60;
+    if (minutes < 10)
+        rtn_str.append("0");
+    rtn_str.append(to_string(minutes) + ":");
+
+    // seconds
+    seconds = seconds % 60;
+    if (seconds < 10)
+        rtn_str.append("0");
+    rtn_str.append(to_string(seconds));
+    
+    // milliseconds
+    rtn_str.append(secs_str.substr(secs_str.find('.')));
+
+    return rtn_str;
+}
 
 // Converts a date string to the format YYYY-MM-DD hh:mm:ss
 string TimeAndDate::FormatDate(string date_str) {
