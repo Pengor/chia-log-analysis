@@ -1,6 +1,6 @@
 // Chia Log Analysis by Drew M. Johnson
 // Authored 4/11/2021
-// Last updated 5/10/2021
+// Last updated 5/19/2021
 //
 // This program prompts the user for two file locations if not provided:
 //      1) The location to read Chia plotter logs from
@@ -14,6 +14,7 @@
 #include <filesystem>
 #include "InputHandler.h"
 #include "Patterns.h"
+#include "TimeAndDate.h"
 
 using namespace std;
 
@@ -86,7 +87,7 @@ int main(int argc, char* argv[]) {
                         out_file << match.str(1) << "," << match.str(2) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::START_DATE)) {
-                        out_file << match.str(1) << ",";
+                        out_file << TimeAndDate::FormatDate(match.str(1)) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::PHASE_1)) {
                         out_file << match.str(1) << ",";
