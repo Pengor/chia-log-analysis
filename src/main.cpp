@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
     if (out_file.is_open()) {
         if (filesystem::file_size(out_filename) == 0) {
             out_file << 
-                "Filename," << 
+                "Log filename," << 
                 "Temp dir 1," << 
                 "Temp dir 2," << 
                 "Plot ID," << 
