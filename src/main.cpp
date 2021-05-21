@@ -36,8 +36,10 @@ int main(int argc, char* argv[]) {
     if (out_file.is_open()) {
         if (filesystem::file_size(out_filename) == 0) {
             out_file << 
+                "Filename," << 
                 "Temp dir 1," << 
                 "Temp dir 2," << 
+                "Plot ID," << 
                 "Plot size," << 
                 "Buffer size," << 
                 "Buckets," << 
@@ -45,14 +47,19 @@ int main(int argc, char* argv[]) {
                 "Stripe size," << 
                 "Start date," << 
                 "Phase 1 duration," << 
+                "Phase 1 CPU %," <<
                 "Phase 2 duration," << 
+                "Phase 2 CPU %," <<
                 "Phase 3 duration," << 
+                "Phase 3 CPU %," <<
                 "Phase 4 duration," << 
+                "Phase 4 CPU %," << 
                 "Total time (sec)," << 
                 "Total time," << 
+                "Total CPU %," << 
                 "Copy time," << 
                 "Plot filename," << 
-                endl;
+                "\n";
         }
 
         for(auto& current: filesystem::directory_iterator(directory)) {
@@ -77,7 +84,11 @@ int main(int argc, char* argv[]) {
                         continue;
                     } else if (!found_flags[ff_i] && regex_search(current_line, match, patterns::PLOT_DIRS)) {
                         started_plots++;
+                        out_file << current.path() << ","; // Log filename
                         out_file << match.str(1) << "," << match.str(2) << ",";
+                        found_flags[ff_i] = true;
+                    } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::PLOT_ID)) {
+                        out_file << match.str(1) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::PLOT_SIZE)) {
                         out_file << match.str(1) << ",";
@@ -95,19 +106,19 @@ int main(int argc, char* argv[]) {
                         out_file << TimeAndDate::FormatDate(match.str(1)) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::PHASE_1)) {
-                        out_file << match.str(1) << ",";
+                        out_file << match.str(1) << "," << match.str(2) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::PHASE_2)) {
-                        out_file << match.str(1) << ",";
+                        out_file << match.str(1) << "," << match.str(2) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::PHASE_3)) {
-                        out_file << match.str(1) << ",";
+                        out_file << match.str(1) << "," << match.str(2) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::PHASE_4)) {
-                        out_file << match.str(1) << ",";
+                        out_file << match.str(1) << "," << match.str(2) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::TOTAL_TIME)) {
-                        out_file << match.str(1) << "," << TimeAndDate::FormatTime(match.str(1)) << ",";
+                        out_file << match.str(1) << "," << TimeAndDate::FormatTime(match.str(1)) << "," << match.str(2) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::COPY_TIME)) {
                         out_file << match.str(1) << ",";
