@@ -60,6 +60,9 @@ int main(int argc, char* argv[]) {
             if (in_file.is_open()) {
                 smatch match;
                 bool found_flags[patterns::NUM_SEARCHES] = {false};
+                cout << "Parsing file " << current.path() << endl;
+                int started_plots = 0;
+                int complete_plots = 0;
                 while (getline(in_file, current_line)) {
 
                     size_t ff_i = 0; // found_flags iterator
@@ -73,6 +76,7 @@ int main(int argc, char* argv[]) {
                         // these lines
                         continue;
                     } else if (!found_flags[ff_i] && regex_search(current_line, match, patterns::PLOT_DIRS)) {
+                        started_plots++;
                         out_file << match.str(1) << "," << match.str(2) << ",";
                         found_flags[ff_i] = true;
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::PLOT_SIZE)) {
@@ -111,16 +115,18 @@ int main(int argc, char* argv[]) {
                     } else if (!found_flags[++ff_i] && regex_search(current_line, match, patterns::FILENAME)) {
                         if (!found_flags[ff_i - 1])
                             out_file << ",";
-                        out_file << match.str(1) << ",";
-                        found_flags[ff_i] = true;
-                        break; // Last piece of data we're interested in, skip the rest of the lines
+                        out_file << match.str(1) << "," << "\n";
+                        cout << "Plot " << ++complete_plots << " parsed" << endl;
+                        for (size_t i = 0; i < patterns::NUM_SEARCHES; i++) {
+                            found_flags[i] = false;
+                        }
                     }
                 }
-                // Add line end unless we didn't write any data for current in_file
-                if (any_of(begin(found_flags),end(found_flags),[](int i){return i;})) {
-                    out_file << endl;
-                    cout << "Parsed: " << current.path() << endl;
-                } else {
+                // Add line end if last plot parsed was incomplete
+                if (started_plots > 0 && started_plots != complete_plots) {
+                    cout << "Plot " << started_plots << " parsed (partial)" << endl;
+                    out_file << "\n";
+                } else if (started_plots == 0) { // File was not a plot log
                     cout << "NOTE: No relevant data found in file: " << current.path() << endl;
                 }
                 in_file.close();
