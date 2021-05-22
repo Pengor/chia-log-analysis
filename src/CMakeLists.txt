@@ -4,6 +4,8 @@ project(chia-log-analysis VERSION 0.5)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_FLAGS "-lstdc++fs")  
+
 
 configure_file(CMakeConfig.h.in CMakeConfig.h)
 
